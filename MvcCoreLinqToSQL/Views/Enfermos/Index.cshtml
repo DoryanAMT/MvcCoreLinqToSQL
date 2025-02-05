@@ -1,0 +1,41 @@
+﻿@model List<Enfermo>
+
+<h1>LINQ DE ENFERMOS</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>INSCRIPCION</th>
+            <th>APELLIDO</th>
+            <th>DIRECCION</th>
+            <th>FECHA NACIMIENTO</th>
+            <th>SEXO</th>
+            <th>NSS</th>
+            <th>ACCIONES</th>
+        </tr>
+    </thead>
+   <tbody>
+       @foreach(Enfermo enfermo in Model){
+           <tr>
+               <td>@enfermo.Inscripcion</td>
+               <td>@enfermo.Apellido</td>
+               <td>@enfermo.Direccion</td>
+               <td>@enfermo.FechaNac</td>
+               <td>@enfermo.S</td>
+               <td>@enfermo.NSS</td>
+               <td>
+                   <a asp-controller="Enfermos"
+                   asp-action="Details"
+                   asp-route-inscripcion="@enfermo.Inscripcion">
+                   Detalles
+                   </a>
+                    <a asp-controller="Enfermos"
+                       asp-action="Delete"
+                       asp-route-inscripcion="@enfermo.Inscripcion">
+                        Delete
+                    </a>
+               </td>
+           </tr>
+       }
+   </tbody>
+</table>
