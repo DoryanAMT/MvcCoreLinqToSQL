@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Mvc;
 using MvcCoreLinqToSQL.Models;
 using MvcCoreLinqToSQL.Repositories;
 
@@ -37,6 +38,22 @@ namespace MvcCoreLinqToSQL.Controllers
             }
             return View(empleados);
         }
+        //-------------------- ResumeEmpleados --------------------------
+        [HttpGet]
+        public IActionResult EmpleadosOficio()
+        {
+            ViewData["OFICIOS"] = this.repo.GetOficios();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult EmpleadosOficio
+            (string oficio)
+        {
+            ViewData["OFICIOS"] = this.repo.GetOficios();
+            ResumenEmpleados resumen = this.repo.GetEmpleadosOficio(oficio);
+            return View(resumen);
+        }
+
 
     }
 }
